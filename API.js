@@ -18,7 +18,7 @@ function api(url,method='GET') {
 
                              <div  class="d-flex justify-content-center">
                              <h4 class="card-title text-black col-6 fw-bolder border border-2 
-                             border-black text-center bg-body-tertiary cc"  onclick="ApplyRed(this)"
+                             border-black text-center bg-body-tertiary red"  onclick="ApplyRed(this)"
                               >${post.price} $</h4>
                              </div>
 
@@ -36,12 +36,12 @@ function api(url,method='GET') {
          }  
         
     })
-    //  document.querySelector('.red').addEventListener (, function () { this.classlist.add=("text-danger") ;})
+     document.querySelector('.red').addEventListener (, function () { this.classlist.add=("text-danger") ;})
     
    
     }
 
-     function ApplyRed() {cc.classList.add('red')};
+    
     
     // Function to add a class
    
