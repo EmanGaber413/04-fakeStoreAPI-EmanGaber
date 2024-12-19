@@ -76,8 +76,15 @@ closeBtn.addEventListener("click",function () {if (model.classList.contains=("d-
   previousBtn.addEventListener("click",function () {
                          
   currectIndex-=1
- var previmage= images.item(currectIndex);
- modelImg.src= previmage.src; 
+  if (currectIndex >-1) {
+    var previmage= images.item(currectIndex);
+    modelImg.src= previmage.src; 
+  }
+  else{
+    currectIndex=19
+    modelImg.src= previmage.src; 
+  }
+ 
 
                             // modelImg.src= imageOfArray.src;
             
