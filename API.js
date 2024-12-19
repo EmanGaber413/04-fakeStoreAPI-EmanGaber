@@ -1,5 +1,6 @@
 
-var JsonData =''
+var JsonData =[];
+var modelImg =document.querySelector(".modelImg")
 var XmlHttp = new XMLHttpRequest();
 function api(url,method='GET') {
     XmlHttp.open(method, url);
@@ -9,16 +10,19 @@ function api(url,method='GET') {
             {  JsonData =JSON.parse(XmlHttp.responseText)
              var htmlPostView=document.getElementById('PostData')  
              var HtmlCollection=``
-             for (var post of JsonData) {
+             var index=-1
+             for (var post of JsonData) {index++
+                var images= document.querySelectorAll("#image")
+                
                 HtmlCollection +=
                         `<div class=" card col-3 my-4" style="width: 18rem;">
-                         <img src="${post.image}" class="card-img-top p-4 w-100 " style="height: 250px;" >
+                         <img  data-slide="${index}" src="${post.image}" class="card-img-top p-4 w-100 " style="height: 250px;"  id="image">
                          <div  class="card-body">
                              <h5 class="card-title">${post.title}</h5>
 
                              <div  class="d-flex justify-content-center">
                              <h4 class="card-title text-black col-6 fw-bolder border border-2 
-                             border-black text-center bg-body-tertiary red"  onclick="ApplyRed(this)"
+                             border-black text-center bg-body-tertiary red"  
                               >${post.price} $</h4>
                              </div>
 
@@ -27,30 +31,85 @@ function api(url,method='GET') {
                          </div>
                          </div>
                          
-                         `
+                         `     
                          
+                        
+              }
+
+              htmlPostView.innerHTML=HtmlCollection;
+              var images= document.querySelectorAll("#image")
+              
+              var model =document.querySelector(".model-slider")
               
 
-              }
-              htmlPostView.innerHTML=HtmlCollection;
-         }  
-        
-    })
-     document.querySelector('.red').addEventListener (, function () { this.classlist.add=("text-danger") ;})
-    
+ images.forEach(function (imageOfArray) {
+                
+              
+    imageOfArray.addEventListener("click",function () {
+                    // console.log(imageOfArray)
+           
+                model.classList.add("d-block")
+                // model.Style.display="block"
+                
+                modelImg.src= imageOfArray.src; 
+                // console.log(imageOfArray.dataset.slide)
+                currectIndex=imageOfArray.dataset.slide
+
+
+               
+    } ) 
+
+
    
+})
+
+var closeBtn= document.querySelector(".close")
+closeBtn.addEventListener("click",function () {if (model.classList.contains=("d-block")) {
+    model.classList.remove("d-block")
+                                              } 
+    
+  }) 
+
+
+  var previousBtn =document.querySelector(".previousBtn")
+                    
+  previousBtn.addEventListener("click",function () {
+                         
+  currectIndex-=1
+ var previmage= images.item(currectIndex);
+ modelImg.src= previmage.src; 
+
+                            // modelImg.src= imageOfArray.src;
+            
+                        
+                    } )
+    
+                   
+                  
+                   
+           
+              
+           
+         
+       
     }
+    //  document.querySelector('.red').addEventListener ("click", function () { this.classlist.add=("text-danger") ;})
+
+})}  
+
+   
+  
 
     
-    
-    // Function to add a class
+
+   
    
 
 api('https://fakestoreapi.com/products','GET');
 
-// function ApplyRed(e) {e.classList.add("text-danger");
-// }
 
+
+// slider2
 
 
 
@@ -64,34 +123,35 @@ api('https://fakestoreapi.com/products','GET');
 
 
 
-// slider
-function slider(url,method='GET') {
-    
-    XmlHttp.open(method, url);
-    XmlHttp.send();
-    XmlHttp.addEventListener('readystatechange', function () {
-        if (XmlHttp.readyState===4 && XmlHttp.status===200) 
-            {  JsonData =JSON.parse(XmlHttp.responseText)
-             var SliderModel=document.getElementById('model-slider')  
-             var HtmlCollection2=``
+// slider1
 
-       for (var slide of JsonData) {
+// function slider(url,method='GET') {
     
-HtmlCollection2 +=
- `<div class="content w-50 m-auto  position-absolute z-3 " style="z-index: 1000;">
-<img src="./photo-1554995207-c18c203602cb.avif" alt="" class="w-100">
-<div class="position-relative d-flex justify-content-between top-50">
-  <button><i class="fa-solid fa-backward"></i></button>
-  <button><i class="fa-solid fa-forward"></i></button>
-</div >
-<div class="position-absolute top-0 end-0">
-  <button><i class="fa-regular fa-rectangle-xmark"></i></button></div>
- </div>`
- SliderModel.innerHTML = HtmlCollection2
-}}})}
+//     XmlHttp.open(method, url);
+//     XmlHttp.send();
+//     XmlHttp.addEventListener('readystatechange', function () {
+//         if (XmlHttp.readyState===4 && XmlHttp.status===200) 
+//             {  JsonData =JSON.parse(XmlHttp.responseText)
+//              var SliderModel=document.getElementById('model-slider')  
+//              var HtmlCollection2=``
+
+//        for (var slide of JsonData) {
+    
+// HtmlCollection2 +=
+//  `<div class="content w-50 m-auto  position-absolute z-3 " style="z-index: 1000;">
+// <img src="./photo-1554995207-c18c203602cb.avif" alt="" class="w-100"  id="image">
+// <div class="position-relative d-flex justify-content-between top-50">
+//   <button><i class="fa-solid fa-backward"></i></button>
+//   <button><i class="fa-solid fa-forward"></i></button>
+// </div >
+// <div class="position-absolute top-0 end-0">
+//   <button><i class="fa-regular fa-rectangle-xmark"></i></button></div>
+//  </div>`
+//  SliderModel.innerHTML = HtmlCollection2
+// }}})}
  
 
-slider('https://fakestoreapi.com/products','GET')
+// slider('https://fakestoreapi.com/products','GET')
 
 
 

@@ -1,6 +1,6 @@
-.red {
+/* .red {
     color: rgba(219, 36, 36, 0.336) !important;
-}
+} */
 
 .roundBorder {
     
@@ -9,4 +9,11 @@
     padding: 20px;
   
 
+}
+ 
+.model-slider{
+    display: none;
+}
+.close{
+    
 }
