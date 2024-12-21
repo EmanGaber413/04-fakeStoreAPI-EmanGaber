@@ -10,7 +10,7 @@ function api(url,method='GET') {
             {  JsonData =JSON.parse(XmlHttp.responseText)
              var htmlPostView=document.getElementById('PostData')  
              var HtmlCollection=``
-             var index=-1
+             var index= -1
              for (var post of JsonData) {index++
                 var images= document.querySelectorAll("#image")
                 
@@ -41,7 +41,6 @@ function api(url,method='GET') {
               
               var model =document.querySelector(".model-slider")
               
-
  images.forEach(function (imageOfArray) {
                 
               
@@ -54,8 +53,35 @@ function api(url,method='GET') {
                 modelImg.src= imageOfArray.src; 
                 // console.log(imageOfArray.dataset.slide)
                 currectIndex=imageOfArray.dataset.slide
+                
 
+               
 
+  var previousBtn =document.querySelector(".previousBtn")
+                    
+  previousBtn.addEventListener("click",function () {
+   
+   var previmage= images.item(currectIndex);
+   currectIndex-=1
+  if (currectIndex <0) {
+    currectIndex=images.length-1
+  }
+  modelImg.src= previmage.src; 
+  } )
+    
+
+  var nextBtn =document.querySelector(".nextBtn")
+  nextBtn.addEventListener("click",function () {
+    console.log(currectIndex ,"currentindex")
+    console.log(index ,"index")
+    currectIndex++
+    var nextimage= images.item(currectIndex);
+    if (currectIndex>images.length-1) {
+      currectIndex=0
+       
+    }
+    modelImg.src= nextimage.src; 
+   })
                
     } ) 
 
@@ -71,38 +97,15 @@ closeBtn.addEventListener("click",function () {if (model.classList.contains=("d-
   }) 
 
 
-  var previousBtn =document.querySelector(".previousBtn")
-                    
-  previousBtn.addEventListener("click",function () {
-                         
-  currectIndex-=1
-  if (currectIndex >-1) {
-    var previmage= images.item(currectIndex);
-    modelImg.src= previmage.src; 
-  }
-  else{
-    currectIndex=19
-    modelImg.src= previmage.src; 
-  }
- 
+  
 
-                            // modelImg.src= imageOfArray.src;
-            
-                        
-                    } )
-    
-                   
-                  
-                   
-           
-              
-           
-         
-       
-    }
+
+}})}  
+
+
     //  document.querySelector('.red').addEventListener ("click", function () { this.classlist.add=("text-danger") ;})
 
-})}  
+
 
    
   
